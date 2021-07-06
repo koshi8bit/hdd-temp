@@ -1,0 +1,13 @@
+[Unit]
+Description=Turn off serv if HDD temperature is too big
+
+[Service]
+User=root
+WorkingDirectory=/opt/koshi8bit/hdd-temp/
+ExecStart=python3 /opt/koshi8bit/hdd-temp/main.py
+Restart=always
+RestartSec = 60
+TimeoutStartSec = infinity
+
+[Install]
+WantedBy=multi-user.target
