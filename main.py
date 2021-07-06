@@ -9,8 +9,6 @@ from dotenv import load_dotenv
 from telegram_my import TelegramMy
 
 
-max_temp = 32
-
 # with open('/tmp/11111', 'a') as f:
 #     now = datetime.datetime.now().strftime("%Y-%m-%d--%H-%M-%S")
 #     f.write(f'{now}\n')
@@ -46,9 +44,10 @@ def send_and_shutdown(text):
 
 if __name__ == '__main__':
     load_dotenv()
+    max_temp = int(os.getenv('MAXTEMP'))
     telega = TelegramMy(os.getenv('TELEGRAMTOKEN'), os.getenv('CHATID'))
-    telega.set_project_prefix('k8b001@hdd-temp')
-    # telega.send('startup ok')
+    telega.set_project_prefix(os.getenv('TELEGRAMPREFIX'))
+    # telega.send(f'startup ok. Max temp = {max_temp} {type(max_temp)}')
 
     try:
         rregex = r'(\d+)°C'

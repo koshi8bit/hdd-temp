@@ -10,6 +10,9 @@ class TelegramMy:
         self.project_prefix = None
 
     def set_project_prefix(self, text):
+        if text == '':
+            return
+
         self.project_prefix = f'*{text}*'
 
     def send(self, text):
