@@ -18,10 +18,10 @@ class TelegramMy:
 
         self.bot.sendMessage(chat_id=self.chat_id, text=text, parse_mode=telegram.ParseMode.MARKDOWN)
 
-    def send_text_as_file(self, text, file_hint=None):
-        if file_hint is None:
+    def send_text_as_file(self, text, file_name=None):
+        if file_name is None:
             now = datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S-%f")
-            file_hint = f'{now}.log'
+            file_name = f'{now}.log'
         file = io.StringIO(text)
-        file.name = file_hint
+        file.name = file_name
         result = self.bot.sendDocument(self.chat_id, document=file)
