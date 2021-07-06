@@ -9,3 +9,4 @@ sudo systemctl start hdd-temp.service
 sudo systemctl status hdd-temp.service
 
 sudo systemctl disable hdd-temp.service
+sudo systemctl stop hdd-temp.service
