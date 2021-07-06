@@ -1,6 +1,6 @@
 # hdd-temp
-This is simple script, that allows you to turn off your server, when temperature of HDD is too big.
-Also you will have telegram message about this case.
+This is simple script, that allows you to turn off your server, when temperature of HDD is too high.
+Also you will have Telegram message about this issue.
 
 You need to do this:
 1. Rename `.env-template` to `.env`
