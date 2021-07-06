@@ -15,16 +15,26 @@ class TelegramMy:
 
         self.project_prefix = f'*{text}*'
 
-    def send(self, text):
-        if self.project_prefix is not None:
-            text = f'{self.project_prefix}: {text}'
+    def send(self, text, raise_exception=True):
+        try:
+            if self.project_prefix is not None:
+                text = f'{self.project_prefix}: {text}'
 
-        self.bot.sendMessage(chat_id=self.chat_id, text=text, parse_mode=telegram.ParseMode.MARKDOWN)
+            self.bot.sendMessage(chat_id=self.chat_id, text=text, parse_mode=telegram.ParseMode.MARKDOWN)
 
-    def send_text_as_file(self, text, file_name=None):
-        if file_name is None:
-            now = datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S-%f")
-            file_name = f'{now}.log'
-        file = io.StringIO(text)
-        file.name = file_name
-        result = self.bot.sendDocument(self.chat_id, document=file)
+        except Exception as ex:
+            if raise_exception:
+                raise ex
+
+    def send_text_as_file(self, text, file_name=None, raise_exception=True):
+        try:
+            if file_name is None:
+                now = datetime.datetime.now().strftime("%Y-%m-%dT%H-%M-%S-%f")
+                file_name = f'{now}.log'
+            file = io.StringIO(text)
+            file.name = file_name
+            result = self.bot.sendDocument(self.chat_id, document=file)
+
+        except Exception as ex:
+            if raise_exception:
+                raise ex

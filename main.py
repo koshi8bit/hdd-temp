@@ -55,9 +55,8 @@ if __name__ == '__main__':
         check_temp('/dev/sdb', rregex)
 
     except Exception as ex:
-        message = f'ERROR Exception: {str(ex)}'
-        telega.send_text_as_file(traceback.format_exc())
-        send_and_shutdown(message)
+        telega.send_text_as_file(traceback.format_exc(), False)
+        send_and_shutdown(f'ERROR Exception: {str(ex)}')
         raise ex
 
 
