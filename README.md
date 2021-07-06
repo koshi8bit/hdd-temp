@@ -2,6 +2,8 @@
 This is simple script, that allows you to turn off your server, when temperature of HDD is too high.
 Also you will have Telegram message about this issue.
 
+Bu default update time = 60 sec. You can change it in `hdd-temp.service`
+
 You need to do this:
 1. Rename `.env-template` to `.env`
 2. Fill `.env` file with temperature, token chat id and message prefix
@@ -10,6 +12,7 @@ You need to do this:
    * main.py
    * telegram_my.py
    * requirements.txt 
+   * hdd-temp.service 
 4. Run commands below:
    * `sudo pip3 install -r /opt/koshi8bit/hdd-temp/requirements.txt`
    * `sudo cp /opt/koshi8bit/hdd-temp/hdd-temp.service /etc/systemd/system`
