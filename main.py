@@ -1,5 +1,6 @@
 import datetime
 import os
+import subprocess
 
 from dotenv import load_dotenv
 
@@ -12,13 +13,17 @@ with open('/tmp/11111', 'a') as f:
 if __name__ == '__main__':
     load_dotenv()
     telega = TelegramMy(os.getenv('TELEGRAMTOKEN'), os.getenv('CHATID'))
-    telega.set_project_prefix('hdd-temp')
+    telega.set_project_prefix('k8b001@hdd-temp')
+    telega.send('k8b001 startup ok')
 
-    # process = subprocess.Popen(["sudo hddtemp /dev/sda"], shell=False, stdout=subprocess.PIPE)
-    # data = process.communicate()  # returns tuple
+    bashCmd = ["hddtemp", "/dev/sda"]
+    process = subprocess.Popen(bashCmd, shell=False, stdout=subprocess.PIPE)
+    output, error = process.communicate()  # returns tuple
     # temp = int(data[0].split()[5][1:3])
     # # print(temp)
     # print(data[0])
-    telega.send('start ok2')
+
+    telega.send(str(output))
+
 
 
