@@ -1,0 +1,5 @@
+.env
+.idea/
+__pycache__/
+to_linux/
+docker-builder/.env
