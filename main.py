@@ -47,7 +47,7 @@ if __name__ == '__main__':
     max_temp = int(os.getenv('MAX_TEMP'))
     telega = TelegramMy(os.getenv('TELEGRAM_TOKEN'), os.getenv('TELEGRAM_CHAT_ID'))
     telega.set_project_prefix(os.getenv('TELEGRAM_PREFIX'))
-    telega.send(f'startup ok. Max temp = {max_temp} {type(max_temp)}')
+    # telega.send(f'startup ok. Max temp = {max_temp} {type(max_temp)}')
 
     try:
         rregex = r'(\d+)°C'

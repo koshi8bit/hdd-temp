@@ -23,6 +23,8 @@ You need to do this:
 5. To check for status and errors you can use commands below:
    * `sudo systemctl status hdd-temp.service`
    * `journalctl -e -u hdd-temp.service` 
+   * `sudo watch hddtemp /dev/sda /dev/sdb`
+   * `sudo systemctl restart hdd-temp.service`
     
 6. FIN!
 
