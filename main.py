@@ -33,21 +33,21 @@ def check_temp(device, regex):
 
 
 def send_and_shutdown(text):
-    delay_sec = 120
-    telega.send(text)
-    telega.send(f'*Shitting down in {str(delay_sec)} sec*')
+    delay_sec = 180
+    telega.send(text, False)
+    telega.send(f'*Shutting down in {str(delay_sec)} sec*', False)
     time.sleep(delay_sec)
-    telega.send(f'*Shitting down..*')
+    telega.send(f'*Shutting down..*', False)
     time.sleep(3)
     os.system('init 0')
 
 
 if __name__ == '__main__':
     load_dotenv()
-    max_temp = int(os.getenv('MAXTEMP'))
-    telega = TelegramMy(os.getenv('TELEGRAMTOKEN'), os.getenv('CHATID'))
-    telega.set_project_prefix(os.getenv('TELEGRAMPREFIX'))
-    # telega.send(f'startup ok. Max temp = {max_temp} {type(max_temp)}')
+    max_temp = int(os.getenv('MAX_TEMP'))
+    telega = TelegramMy(os.getenv('TELEGRAM_TOKEN'), os.getenv('TELEGRAM_CHAT_ID'))
+    telega.set_project_prefix(os.getenv('TELEGRAM_PREFIX'))
+    telega.send(f'startup ok. Max temp = {max_temp} {type(max_temp)}')
 
     try:
         rregex = r'(\d+)°C'
@@ -55,7 +55,7 @@ if __name__ == '__main__':
         check_temp('/dev/sdb', rregex)
 
     except Exception as ex:
-        telega.send_text_as_file(traceback.format_exc(), False)
+        telega.send_text_as_file(traceback.format_exc(), None, False)
         send_and_shutdown(f'ERROR Exception: {str(ex)}')
         raise ex
 
